@@ -1,0 +1,53 @@
+name: Dry Build
+on:
+  push:
+    branches-ignore:
+      - master
+
+jobs:
+  build:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os:
+          - windows-latest
+          - macos-latest
+          - ubuntu-latest
+        node:
+          - 13.x
+          - 12.x
+    steps:
+      - uses: actions/checkout@v2
+        name: Checkout
+        with:
+          fetch-depth: 1
+      - name: Cache yarn
+        uses: actions/cache@v1
+        with:
+          key: ${{ matrix.os }}-${{ matrix.node }}-${{ github.ref }}-yarn
+          path: .yarn/cache
+          restore-keys: |
+            ${{ matrix.os }}-${{ matrix.node }}-refs/heads/master-yarn
+      - name: Cache node_modules
+        uses: actions/cache@v1
+        with:
+          key: ${{ matrix.os }}-${{ matrix.node }}-${{ github.ref }}-node_modules
+          path: node_modules
+          restore-keys: |
+            ${{ matrix.os }}-${{ matrix.node }}-refs/heads/master-node_modules
+      - uses: actions/setup-node@v1
+        name: Set up node
+        with:
+          node-version: ${{ matrix.node }}
+          registry-url: https://npm.pkg.github.com/alorel
+      - run: npm install -g yarn@^2.0.0-rc.27
+        name: Set up yarn
+      - run: yarn install --immutable
+        name: Yarn install
+        env:
+          YARN_ENABLE_GLOBAL_CACHE: 'false'
+          YARN_NPM_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      - run: yarn run lint
+        if: ${{ matrix.node == '13.x' && matrix.os == 'ubuntu-latest'}}
+      - name: Build
+        run: yarn run rollup

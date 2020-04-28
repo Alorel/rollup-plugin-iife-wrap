@@ -1,0 +1,11 @@
+{
+  "extends": "./node_modules/@alorel-personal/tslint-rules/tslint.json",
+  "rules": {
+    "no-invalid-this": false,
+    "no-implicit-dependencies": [
+      true,
+      "dev",
+      ["estree"]
+    ]
+  }
+}
