@@ -1,5 +1,6 @@
 import {Program} from 'estree';
 import {OutputPlugin, PluginContext} from 'rollup';
+import {DEFAULT_IIFE_WRAP_VARS} from './DEFAULT_IIFE_WRAP_VARS';
 import {IifeWrapDualVar, IifeWrapPluginOpts, IifeWrapVar} from './IifeWrapPluginOpts';
 import {doWrap} from './lib/doWrap';
 import {filterVarsForOccurrence} from './lib/filterVarsForOccurrence';
@@ -10,18 +11,7 @@ import {stubTrue} from './lib/stub';
 function iifeWrapPlugin(pluginOpts: IifeWrapPluginOpts = {}): OutputPlugin {
   const {
     minOccurrences = 2, //tslint:disable-line:no-magic-numbers
-    vars = [
-      'Object',
-      'Array',
-      'Promise',
-      'Symbol',
-      'JSON',
-      'document',
-      ['window', 'typeof window === \'undefined\' ? undefined : window'],
-      'location',
-      'Error',
-      'TypeError'
-    ],
+    vars = DEFAULT_IIFE_WRAP_VARS,
     includeAssets,
     includeChunks = stubTrue,
     sourceMap = false
@@ -75,6 +65,7 @@ function iifeWrapPlugin(pluginOpts: IifeWrapPluginOpts = {}): OutputPlugin {
 }
 
 export {
+  DEFAULT_IIFE_WRAP_VARS,
   IifeWrapPluginOpts,
   IifeWrapDualVar,
   IifeWrapVar,

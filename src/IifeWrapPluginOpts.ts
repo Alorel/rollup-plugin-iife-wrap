@@ -24,7 +24,7 @@ export interface IifeWrapPluginOpts {
    * </code>
    * @default <code>['Object', 'Array', 'Promise', 'Symbol', 'JSON', 'document', ['window', 'typeof window === \'undefined\' ? undefined : window'], 'location', 'Error', 'TypeError']</code>
    */
-  vars?: IifeWrapVar[];
+  vars?: IifeWrapVar[] | ReadonlyArray<IifeWrapVar>;
 
   //tslint:enable:max-line-length
 
