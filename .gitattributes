@@ -1,0 +1,12 @@
+# Auto detect text files and perform LF normalization
+* text=auto
+
+# Force the following filetypes to have unix eols, so Windows does not break them
+*.* text eol=lf
+
+# These files are text and should be normalized (Convert crlf => lf)
+*.js text
+*.ts text
+*.yml text
+*.md text
+*.json text
