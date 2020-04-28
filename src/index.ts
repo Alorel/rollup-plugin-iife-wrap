@@ -1,27 +1,47 @@
 import {Program} from 'estree';
 import {OutputPlugin, PluginContext} from 'rollup';
 import {DEFAULT_IIFE_WRAP_VARS} from './DEFAULT_IIFE_WRAP_VARS';
-import {IifeWrapDualVar, IifeWrapPluginOpts, IifeWrapVar} from './IifeWrapPluginOpts';
+import {
+  IifeWrapAnyArray as AnyArray,
+  IifeWrapDualVar as DualVar,
+  IifeWrapPluginOpts as PluginOpts,
+  IifeWrapVar as WrapVar
+} from './IifeWrapPluginOpts';
 import {doWrap} from './lib/doWrap';
 import {filterVarsForOccurrence} from './lib/filterVarsForOccurrence';
 import {inlineSourceMap} from './lib/inlineSourceMap';
-import {mapIifeVar} from './lib/mapIifeVar';
 import {stubTrue} from './lib/stub';
 
-function iifeWrapPlugin(pluginOpts: IifeWrapPluginOpts = {}): OutputPlugin {
+function iifeWrapPlugin(pluginOpts: PluginOpts = {}): OutputPlugin {
   const {
     minOccurrences = 2, //tslint:disable-line:no-magic-numbers
-    vars = DEFAULT_IIFE_WRAP_VARS,
+    vars = DEFAULT_IIFE_WRAP_VARS as AnyArray<WrapVar>,
     includeAssets,
     includeChunks = stubTrue,
-    sourceMap = false
+    sourceMap = false,
+    ssrAwareVars = [
+      'document',
+      'window',
+      'location'
+    ]
   } = pluginOpts;
 
   if (!vars.length) {
     throw new Error('At least one variable required');
   }
 
-  const mappedVars: IifeWrapDualVar[] = vars.map(mapIifeVar);
+  const mappedVars: DualVar[] = vars.map((v): DualVar => {
+    if (typeof v === 'string') {
+      return [
+        v,
+        ssrAwareVars.includes(v) ?
+          `typeof ${v} === 'undefined' ? undefined : ${v}` :
+          v
+      ];
+    } else {
+      return v;
+    }
+  });
 
   function run(ctx: PluginContext, code: string): null | ReturnType<typeof doWrap> {
     // Need to pass undefined as an option - typings have the arg as required
@@ -66,8 +86,9 @@ function iifeWrapPlugin(pluginOpts: IifeWrapPluginOpts = {}): OutputPlugin {
 
 export {
   DEFAULT_IIFE_WRAP_VARS,
-  IifeWrapPluginOpts,
-  IifeWrapDualVar,
-  IifeWrapVar,
+  PluginOpts as IifeWrapPluginOpts,
+  DualVar as IifeWrapDualVar,
+  AnyArray as IifeWrapAnyArray,
+  WrapVar as IifeWrapVar,
   iifeWrapPlugin
 };
