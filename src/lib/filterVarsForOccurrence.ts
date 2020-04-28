@@ -21,6 +21,10 @@ export function filterVarsForOccurrence(
   vars: IifeWrapDualVar[],
   minOccurrences: number
 ): IifeWrapDualVar[] {
+  if (minOccurrences <= 0) {
+    return vars;
+  }
+
   const counts = varsToMap(vars);
   let foundAll = false;
 
