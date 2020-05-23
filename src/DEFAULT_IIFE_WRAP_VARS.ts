@@ -9,6 +9,8 @@ export const DEFAULT_IIFE_WRAP_VARS: ReadonlyArray<string> = Object.freeze([
   'window',
   'location',
   'Error',
+  'localStorage',
+  'sessionStorage',
   'encodeURI',
   'encodeURIComponent',
   'TypeError'

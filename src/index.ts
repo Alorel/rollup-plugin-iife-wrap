@@ -21,6 +21,8 @@ function iifeWrapPlugin(pluginOpts: PluginOpts = {}): OutputPlugin {
     sourceMap = false,
     ssrAwareVars = [
       'document',
+      'localStorage',
+      'sessionStorage',
       'window',
       'location'
     ]
