@@ -1,3 +1,10 @@
+# [1.3.0](https://github.com/Alorel/rollup-plugin-iife-wrap/compare/1.2.0...1.3.0) (2020-05-23)
+
+
+### Features
+
+* add localStorage & sessionStorage to default vars ([5d62bd3](https://github.com/Alorel/rollup-plugin-iife-wrap/commit/5d62bd3cd6062814963d7c177849f3e736ed2aa0))
+
 # [1.2.0](https://github.com/Alorel/rollup-plugin-iife-wrap/compare/1.1.0...1.2.0) (2020-05-23)
 
 
