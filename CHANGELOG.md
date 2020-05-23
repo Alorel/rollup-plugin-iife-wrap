@@ -1,3 +1,15 @@
+# [1.2.0](https://github.com/Alorel/rollup-plugin-iife-wrap/compare/1.1.0...1.2.0) (2020-05-23)
+
+
+### Features
+
+* add encodeURI and encodeURIComponent to default vars ([a7667de](https://github.com/Alorel/rollup-plugin-iife-wrap/commit/a7667deaaa49edf5753e861b8650b255a9ca0e6b))
+
+
+### Maintenance
+
+* Commit IDE inspection profile ([709d235](https://github.com/Alorel/rollup-plugin-iife-wrap/commit/709d235a8d79857826c8790bd6454283a8ea1921))
+
 # [1.1.0](https://github.com/Alorel/rollup-plugin-iife-wrap/compare/1.0.1...1.1.0) (2020-04-28)
 
 
