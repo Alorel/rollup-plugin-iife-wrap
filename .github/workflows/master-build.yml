@@ -10,12 +10,9 @@ jobs:
     strategy:
       matrix:
         os:
-          - windows-latest
-          - macos-latest
           - ubuntu-latest
         node:
-          - 13.x
-          - 12.x
+          - 14.x
     steps:
       - uses: actions/checkout@v2
         with:
@@ -40,12 +37,7 @@ jobs:
           YARN_ENABLE_GLOBAL_CACHE: 'false'
           YARN_NPM_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: yarn run lint
-        if: ${{ matrix.node == '13.x' && matrix.os == 'ubuntu-latest'}}
-      - name: Build
-        if: ${{ matrix.node != '13.x' || matrix.os != 'ubuntu-latest'}}
-        run: yarn run rollup
       - name: Dry release
-        if: ${{ matrix.node == '13.x' && matrix.os == 'ubuntu-latest'}}
         run: yarn run release --dry-run
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -64,17 +56,17 @@ jobs:
       - name: Cache yarn
         uses: actions/cache@v1
         with:
-          key: ubuntu-latest-13.x-${{ github.ref }}-yarn
+          key: ubuntu-latest-14.x-${{ github.ref }}-yarn
           path: .yarn/cache
       - name: Cache node_modules
         uses: actions/cache@v1
         with:
-          key: ubuntu-latest-13.x-${{ github.ref }}-node_modules
+          key: ubuntu-latest-14.x-${{ github.ref }}-node_modules
           path: node_modules
       - uses: actions/setup-node@v1
         name: Set up node
         with:
-          node-version: 13.x
+          node-version: 14.x
           registry-url: https://npm.pkg.github.com/alorel
       - run: npm install -g yarn@^2.0.0-rc.27
         name: Set up yarn

@@ -10,12 +10,9 @@ jobs:
     strategy:
       matrix:
         os:
-          - windows-latest
-          - macos-latest
           - ubuntu-latest
         node:
-          - 13.x
-          - 12.x
+          - 14.x
     steps:
       - uses: actions/checkout@v2
         name: Checkout
@@ -48,6 +45,5 @@ jobs:
           YARN_ENABLE_GLOBAL_CACHE: 'false'
           YARN_NPM_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - run: yarn run lint
-        if: ${{ matrix.node == '13.x' && matrix.os == 'ubuntu-latest'}}
       - name: Build
         run: yarn run rollup
