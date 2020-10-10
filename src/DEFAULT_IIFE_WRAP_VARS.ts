@@ -13,5 +13,6 @@ export const DEFAULT_IIFE_WRAP_VARS: ReadonlyArray<string> = Object.freeze([
   'sessionStorage',
   'encodeURI',
   'encodeURIComponent',
+  'Boolean',
   'TypeError'
 ]);
