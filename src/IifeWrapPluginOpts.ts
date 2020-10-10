@@ -1,8 +1,8 @@
+import {Arrayish} from '@alorel/commons-array-types';
 import {OutputAsset, RenderedChunk} from 'rollup';
 
 export type IifeWrapDualVar = [string, string];
 export type IifeWrapVar = string | IifeWrapDualVar;
-export type IifeWrapAnyArray<T> = T[] | ReadonlyArray<T>;
 
 export interface IifeWrapPluginOpts {
   /**
@@ -21,7 +21,7 @@ export interface IifeWrapPluginOpts {
    * Set to an empty array if you don't need these checks
    * @default ['window', 'location', 'document']
    */
-  ssrAwareVars?: IifeWrapAnyArray<string>;
+  ssrAwareVars?: Arrayish<string>;
 
   //tslint:disable:max-line-length
   /**
@@ -35,7 +35,7 @@ export interface IifeWrapPluginOpts {
    * </code>
    * @default <code>['Object', 'Array', 'Promise', 'Symbol', 'JSON', 'document', 'window', 'location', 'Error', 'TypeError']</code>
    */
-  vars?: IifeWrapAnyArray<IifeWrapVar>;
+  vars?: Arrayish<IifeWrapVar>;
 
   //tslint:enable:max-line-length
 
