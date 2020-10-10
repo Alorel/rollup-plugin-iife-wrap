@@ -2,7 +2,6 @@ import {Program} from 'estree';
 import {OutputPlugin, PluginContext} from 'rollup';
 import {DEFAULT_IIFE_WRAP_VARS} from './DEFAULT_IIFE_WRAP_VARS';
 import {
-  IifeWrapAnyArray as AnyArray,
   IifeWrapDualVar as DualVar,
   IifeWrapPluginOpts as PluginOpts,
   IifeWrapVar as WrapVar
@@ -15,7 +14,7 @@ import {stubTrue} from './lib/stub';
 function iifeWrapPlugin(pluginOpts: PluginOpts = {}): OutputPlugin {
   const {
     minOccurrences = 2, //tslint:disable-line:no-magic-numbers
-    vars = DEFAULT_IIFE_WRAP_VARS as AnyArray<WrapVar>,
+    vars = DEFAULT_IIFE_WRAP_VARS,
     includeAssets,
     includeChunks = stubTrue,
     sourceMap = false,
@@ -90,7 +89,6 @@ export {
   DEFAULT_IIFE_WRAP_VARS,
   PluginOpts as IifeWrapPluginOpts,
   DualVar as IifeWrapDualVar,
-  AnyArray as IifeWrapAnyArray,
   WrapVar as IifeWrapVar,
   iifeWrapPlugin
 };
