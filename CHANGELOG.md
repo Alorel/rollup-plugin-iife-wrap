@@ -1,3 +1,17 @@
+# [1.4.0](https://github.com/Alorel/rollup-plugin-iife-wrap/compare/1.3.0...1.4.0) (2020-10-10)
+
+
+### Features
+
+* Add self to wrap vars ([507d390](https://github.com/Alorel/rollup-plugin-iife-wrap/commit/507d390f9226c0a5f074121b9c397fab1fb5701f))
+* Export default SSR-aware vars ([f366327](https://github.com/Alorel/rollup-plugin-iife-wrap/commit/f3663272c2812b342e3d9ce1d8c9e86b87877df3))
+
+
+### Maintenance
+
+* Add Boolean to default vars ([cc99752](https://github.com/Alorel/rollup-plugin-iife-wrap/commit/cc99752b865dd044548e81252bed64775138bf20))
+* Update deps ([62e3462](https://github.com/Alorel/rollup-plugin-iife-wrap/commit/62e346209fc9aed8b995a50059884c01929573c6))
+
 # [1.3.0](https://github.com/Alorel/rollup-plugin-iife-wrap/compare/1.2.0...1.3.0) (2020-05-23)
 
 

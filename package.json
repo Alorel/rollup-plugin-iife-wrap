@@ -1,6 +1,6 @@
 {
   "name": "@alorel/rollup-plugin-iife-wrap",
-  "version": "1.3.0",
+  "version": "1.4.0",
   "description": "Wraps your output chunks in an iife with some globals for better minification.",
   "main": "index.js",
   "module": "esm/index.js",
