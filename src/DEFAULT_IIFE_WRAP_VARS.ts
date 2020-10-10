@@ -7,6 +7,7 @@ export const DEFAULT_IIFE_WRAP_VARS: ReadonlyArray<string> = Object.freeze([
   'JSON',
   'document',
   'window',
+  'self',
   'location',
   'Error',
   'localStorage',

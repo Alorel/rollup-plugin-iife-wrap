@@ -19,7 +19,7 @@ export interface IifeWrapPluginOpts {
    * <code>(function(myVar) {...})(typeof myVar === 'undefined' ? undefined : myVar);</code>
    *
    * Set to an empty array if you don't need these checks
-   * @default ['window', 'location', 'document', 'localStorage', 'sessionStorage']
+   * @default See {@link DEFAULT_IIFE_WRAP_SSR_VARS}
    */
   ssrAwareVars?: Arrayish<string>;
 
@@ -33,7 +33,7 @@ export interface IifeWrapPluginOpts {
    * <code>
    *   (function(Object, foo) {...})(Object, typeof foo === 'undefined' ? {} : foo)
    * </code>
-   * @default <code>['Object', 'Array', 'Promise', 'Symbol', 'JSON', 'document', 'window', 'location', 'Error', 'TypeError']</code>
+   * @default See {@link DEFAULT_IIFE_WRAP_VARS}
    */
   vars?: Arrayish<IifeWrapVar>;
 
