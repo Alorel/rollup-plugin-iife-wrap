@@ -1,6 +1,7 @@
 import {Program} from 'estree';
 import {OutputPlugin, PluginContext} from 'rollup';
 import {DEFAULT_IIFE_WRAP_VARS} from './DEFAULT_IIFE_WRAP_VARS';
+import {DEFAULT_IIFE_WRAP_SSR_VARS} from './DEFAULT_SSR_VARS';
 import {
   IifeWrapDualVar as DualVar,
   IifeWrapPluginOpts as PluginOpts,
@@ -18,13 +19,7 @@ function iifeWrapPlugin(pluginOpts: PluginOpts = {}): OutputPlugin {
     includeAssets,
     includeChunks = stubTrue,
     sourceMap = false,
-    ssrAwareVars = [
-      'document',
-      'localStorage',
-      'sessionStorage',
-      'window',
-      'location'
-    ]
+    ssrAwareVars = DEFAULT_IIFE_WRAP_SSR_VARS
   } = pluginOpts;
 
   if (!vars.length) {
@@ -87,6 +82,7 @@ function iifeWrapPlugin(pluginOpts: PluginOpts = {}): OutputPlugin {
 
 export {
   DEFAULT_IIFE_WRAP_VARS,
+  DEFAULT_IIFE_WRAP_SSR_VARS,
   PluginOpts as IifeWrapPluginOpts,
   DualVar as IifeWrapDualVar,
   WrapVar as IifeWrapVar,

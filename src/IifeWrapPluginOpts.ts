@@ -19,7 +19,7 @@ export interface IifeWrapPluginOpts {
    * <code>(function(myVar) {...})(typeof myVar === 'undefined' ? undefined : myVar);</code>
    *
    * Set to an empty array if you don't need these checks
-   * @default ['window', 'location', 'document']
+   * @default ['window', 'location', 'document', 'localStorage', 'sessionStorage']
    */
   ssrAwareVars?: Arrayish<string>;
 
